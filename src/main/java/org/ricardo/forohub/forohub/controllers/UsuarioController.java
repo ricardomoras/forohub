@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -36,7 +37,7 @@ public class UsuarioController {
 	private UsuarioRepository usuarioRepository;
 
 	@PostMapping
-	public ResponseEntity<?> registarUsuario(@RequestBody DatosRegistroUsuario datosRegistroUsuario,
+	public ResponseEntity<?> registarUsuario(@RequestBody @Valid DatosRegistroUsuario datosRegistroUsuario,
 			UriComponentsBuilder uriComponentsBuilder) {
 		Usuario usuario = usuarioRepository.save(new Usuario(datosRegistroUsuario));
 		DatosListarUsuario datosListarUsuario = new DatosListarUsuario(usuario.getId(), usuario.getNombre(),
@@ -47,7 +48,7 @@ public class UsuarioController {
 	
 	@PutMapping()
 	@Transactional
-	public ResponseEntity<DatosListarUsuario> actualizarUsuario(@RequestBody DatosActualizarUsuario datosActualizarUsuario,
+	public ResponseEntity<DatosListarUsuario> actualizarUsuario(@RequestBody @Valid DatosActualizarUsuario datosActualizarUsuario,
 			UriComponentsBuilder uriComponentsBuilder) {
 		Optional<Usuario> usuario = Optional.ofNullable(usuarioRepository.getReferenceById(datosActualizarUsuario.id()));
 		if (!usuario.isPresent()) {

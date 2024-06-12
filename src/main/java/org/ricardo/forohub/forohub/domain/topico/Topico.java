@@ -18,7 +18,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -35,18 +34,14 @@ public class Topico {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotNull
 	private String titulo;
-	@NotNull
 	private String mensaje;
 	private LocalDateTime fechaCreacion = LocalDateTime.now();
 	private Boolean status = true;
-	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "autor_id")
+    @JoinColumn(name = "usuario_id")
 	@JsonBackReference
 	private Usuario autor;
-	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "curso_id")
 	private Curso curso;

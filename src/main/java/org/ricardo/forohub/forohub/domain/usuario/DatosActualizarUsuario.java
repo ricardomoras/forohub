@@ -1,6 +1,18 @@
 package org.ricardo.forohub.forohub.domain.usuario;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public record DatosActualizarUsuario(
-		Long id,String nombre, String correoElectronico, String contrasena) {
+		@NotNull
+		Long id,
+		@NotBlank
+		String nombre, 
+		@NotBlank
+		@Email
+		String correoElectronico, 
+		@NotBlank
+		String contrasena) {
 
 }

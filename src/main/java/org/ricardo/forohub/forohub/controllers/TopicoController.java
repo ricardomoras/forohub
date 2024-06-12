@@ -52,7 +52,7 @@ public class TopicoController {
 
 	@PutMapping()
 	@Transactional
-	public ResponseEntity<DatosListarTopico> actualizarTopico(@RequestBody DatosActualizarTopico datosActualizarTopico,
+	public ResponseEntity<DatosListarTopico> actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico,
 			UriComponentsBuilder uriComponentsBuilder) {
 		Optional<Topico> topico = Optional.ofNullable(topicoRepository.getReferenceById(datosActualizarTopico.id()));
 		if (!topico.isPresent()) {

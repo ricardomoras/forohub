@@ -58,7 +58,7 @@ public class RespuestasController {
 	
 	@PutMapping()
 	@Transactional
-	public ResponseEntity<DatosListarRespuesta> actualizarUsuario(@RequestBody DatosActualizarRespuesta datosActualizarRespuesta,
+	public ResponseEntity<DatosListarRespuesta> actualizarUsuario(@RequestBody @Valid DatosActualizarRespuesta datosActualizarRespuesta,
 			UriComponentsBuilder uriComponentsBuilder) {
 		Optional<Respuesta> resOpt = Optional.ofNullable(respuestaRepository.getReferenceById(datosActualizarRespuesta.id()));
 		if (!resOpt.isPresent()) {

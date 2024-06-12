@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 import org.ricardo.forohub.forohub.domain.usuario.Usuario;
+import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,9 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 
 @Service
 public class TokenService {
-	//@Value("${api.security.secret}")
-	private String apiSecret = "12345";
+	
+	@Value("${api.security.secret}")
+	private String apiSecret;
 
 	public String generarToken(Usuario usuario) {
 		try {

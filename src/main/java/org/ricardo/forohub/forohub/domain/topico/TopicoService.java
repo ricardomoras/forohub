@@ -32,11 +32,10 @@ public class TopicoService {
 			throw new ValidationException("este id para el usuario no fue encontrado");
 		}
 		
-		Curso curso =  cursoRepository.findByNombre(datos.nombreCurso().getNombre());
+		Curso curso =  cursoRepository.findByNombre(datos.nombreCurso());
 		if(curso == null) {
-			cursoRepository.save(new Curso(datos.nombreCurso().getNombre()));
+			curso = cursoRepository.save(new Curso(datos.nombreCurso()));
 		}
-		
 		Topico topico = topicoRepository.findByTituloIgnoreCase(datos.titulo());
 		
 		if(topico != null) {
